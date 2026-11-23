@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matesaurio y Coralina · Diagnóstico de mates, nivel 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2b2160;--card:#fffaf3;--pink:#ff8fc7;--sun:#ffd166;--mint:#5fd9b8;--sky:#a9d9ff;--red:#ff6b6b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;min-height:100vh;font-family:Fredoka,"Trebuchet MS",sans-serif;color:var(--ink);background:linear-gradient(#8a6fd1,#e9a0d6 55%,#3b3a8f 56%,#1c1a52) fixed}
+#app{max-width:760px;margin:0 auto;padding:16px}
+.top{display:flex;align-items:center;gap:12px;color:#fff;font-weight:600}
+.bar{flex:1;height:14px;background:rgba(255,255,255,.35);border-radius:9px;overflow:hidden}
+.bar b{display:block;height:100%;background:var(--sun);border-radius:9px;transition:width .4s}
+.pill{background:var(--card);border-radius:22px;padding:14px 20px;margin:14px 0;font-size:1.35rem;text-align:center;box-shadow:0 6px 18px rgba(30,20,80,.3)}
+.stage{background:var(--card);border-radius:22px;padding:18px;min-height:250px;box-shadow:0 6px 18px rgba(30,20,80,.3)}
+.row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;margin:12px 0}
+.grid{max-width:520px;margin-inline:auto}
+.b,.it,.hbox{font:inherit;color:var(--ink);background:var(--sky);border:0;border-radius:18px;box-shadow:0 4px 0 rgba(43,33,96,.25);cursor:pointer}
+.b{min-width:60px;min-height:60px;font-size:1.7rem;font-weight:600;padding:6px 14px}
+.b:focus-visible,.it:focus-visible,.hbox:focus-visible,.tk:focus-visible,.go:focus-visible,input:focus-visible{outline:4px solid var(--pink);outline-offset:2px}
+.b:disabled,.hbox:disabled,.tk:disabled{cursor:default}
+.sel{background:var(--sun)!important}
+.big{font-size:2.3rem;text-align:center;margin:18px 0;line-height:1.5;letter-spacing:.05em}
+.sky{position:relative;height:220px;background:linear-gradient(#b9a4f0,#f4b3dc);border-radius:16px;margin-bottom:8px}
+.st{position:absolute;font-size:2.2rem}
+.hbox{background:#fff;border:3px solid var(--ink);display:flex;flex-wrap:wrap;align-content:center;justify-content:center;padding:10px;gap:2px}
+.hbox.big{width:190px;height:190px;font-size:1.9rem}.hbox.sm{width:115px;height:115px;font-size:1.05rem}
+.grp{width:7.6em;font-size:1.3rem;line-height:1.15;border:2px dashed var(--ink);border-radius:12px;padding:.4em}
+.nl{display:flex;border-bottom:5px solid var(--ink);margin:36px 4px 8px}
+.tk{position:relative;flex:1;height:76px;background:none;border:0;cursor:pointer;padding:0}
+.tk::after{content:"";position:absolute;left:50%;bottom:0;width:4px;height:26px;margin-left:-2px;background:var(--ink);border-radius:2px}
+.tk.sel{background:none!important}.tk.sel::after{background:var(--pink);height:48px;width:8px;margin-left:-4px}
+.tk i{position:absolute;top:0;left:50%;transform:translateX(-50%);font:600 1.1rem Fredoka,sans-serif;color:var(--ink)}
+.it{width:92px;height:92px;font-size:2.8rem;position:relative;background:#fff;border:3px solid var(--ink)}
+.it small{position:absolute;right:-6px;bottom:-8px;font-size:1.4rem}
+.hint{text-align:center;margin:4px 0}
+.foxy{display:flex;align-items:center;gap:10px;margin-top:12px;color:#fff}
+.foxy span{font-size:3.2rem}.foxy p{margin:0;background:var(--card);color:var(--ink);padding:8px 16px;border-radius:18px;font-weight:600}
+.go{font:600 1.5rem Fredoka,sans-serif;color:var(--ink);background:var(--sun);border:0;border-radius:999px;padding:14px 34px;box-shadow:0 5px 0 rgba(43,33,96,.3);cursor:pointer}
+input{font:inherit;font-size:1.4rem;padding:12px 16px;border-radius:14px;border:3px solid var(--ink);text-align:center;width:min(320px,100%)}
+h1,h2{margin:.2em 0}
+.c{text-align:center}
+.res{display:flex;align-items:center;gap:14px;padding:10px 4px;border-bottom:1px solid #e6dff5}
+.dot{width:34px;height:34px;border-radius:50%;flex:none;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18)}
+.res b{flex:1}.res em{font-style:normal;opacity:.75}
+.g{background:var(--mint)}.y{background:var(--sun)}.r{background:var(--red)}
+@media print{body{background:#fff}.noprint{display:none}}
+@media (prefers-reduced-motion:reduce){.bar b{transition:none}}
+.dot.s{width:20px;height:20px}.sub{margin:4px 0 8px 46px;font-size:.98rem}.sub2{padding-left:40px;font-size:.98rem}.cp{margin-top:14px}@media print{.hd{color:#000!important;text-shadow:none!important}}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script></head><body><div id="app"></div>
+<script>
+const $=s=>document.querySelector(s),app=$('#app');
+const E=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.innerHTML=x;return e};
+const rep=(s,n)=>Array(n).fill(s).join(''),rnd=n=>[...Array(n).keys()].sort(()=>Math.random()-.5);
+const CAT={nums:'Reconocer números',cont:'Contar objetos',comp:'Comparar cantidades',estr:'Contar con estrategia',lin:'Línea numérica',suma:'Sumar con dibujos',rest:'Restar con dibujos',suma20:'Sumar con números',forma:'Formas geométricas',patr:'Patrones y lógica'};
+const Q=[],add=(cat,q,fn)=>Q.push({cat,q,fn});
+const pick=(b,list,ok,d,cls)=>{const w=E('div','row '+(cls||''));list.forEach(v=>{const x=E('button','b',v);x.onclick=()=>{w.querySelectorAll('button').forEach(y=>y.disabled=true);x.classList.add('sel');d(v==ok)};w.append(x)});b.append(w)};
+const N10=[1,2,3,4,5,6,7,8,9,10];
+// 1 Reconocer números
+[7,4].forEach(n=>add('nums','Toca el número '+n,(b,d)=>pick(b,[0,1,2,3,4,5,6,7,8,9],n,d,'grid')));
+// 2 Contar
+const scatter=(n,b)=>{const f=E('div','sky');rnd(12).slice(0,n).forEach(c=>{const e=E('span','st','⭐');e.style.left=(c%4)*24+Math.random()*8+'%';e.style.top=Math.floor(c/4)*32+Math.random()*8+'%';f.append(e)});b.append(f)};
+[6,9].forEach(n=>add('cont','Cuenta todas las estrellas del cielo',(b,d)=>{scatter(n,b);pick(b,N10,n,d)}));
+// 3 Comparar
+const cmp=(n1,g1,n2,g2)=>(b,d)=>{const w=E('div','row'),bs=[[n1,g1],[n2,g2]].map(([n,g])=>E('button','hbox '+(g?'big':'sm'),rep('💛',n)));bs.forEach((x,k)=>{x.onclick=()=>{bs.forEach(y=>y.disabled=true);x.classList.add('sel');d((k==0)==(n1>n2))};w.append(x)});b.append(w)};
+add('comp','Toca la caja que tenga más corazones',cmp(7,1,9,0));
+add('comp','Toca la caja que tenga más corazones',cmp(8,0,5,1));
+// 4 Contar con estrategia
+const coins=(g,ans,o)=>(b,d)=>{const w=E('div','row');g.forEach(n=>w.append(E('div','grp',rep('🪙',n))));b.append(w);pick(b,o,ans,d)};
+add('estr','Cuenta las monedas. Piensa una forma fácil de hacerlo',coins([10,10,5],25,[15,25,30,35]));
+add('estr','Cuenta las monedas. Piensa una forma fácil de hacerlo',coins([10,10,10,6],36,[26,36,40,46]));
+// 5 Línea numérica
+const line=(ok)=>(b,d)=>{const L=E('div','nl');for(let i=0;i<=10;i++){const k=E('button','tk',[0,5,10].includes(i)?'<i>'+i*10+'</i>':'');k.setAttribute('aria-label',''+i*10);k.onclick=()=>{L.querySelectorAll('button').forEach(x=>x.disabled=true);k.classList.add('sel');d(i*10==ok)};L.append(k)}b.append(L)};
+[30,70].forEach(n=>add('lin','Toca el lugar donde va el '+n+' en la línea',line(n)));
+// 6 y 7 Sumar / restar con dibujos
+const eq=(a,n,s,c,m,ans)=>(b,d)=>{b.append(E('div','big',rep(a,n)+' '+s+' '+rep(c,m)+' = ❓'));pick(b,N10,ans,d)};
+add('suma','¿Cuántas bayas tiene Matesaurio en total?',eq('🫐',2,'+','🍓',3,5));
+add('suma','¿Cuántas frutas tiene Coralina en total?',eq('🍎',4,'+','🍌',2,6));
+add('rest','¿Cuántas frutas le quedarán a Matesaurio?',eq('🥝',6,'−','🥝',3,3));
+add('rest','¿Cuántas frutas le quedarán a Coralina?',eq('🍊',5,'−','🍊',1,4));
+// 8 Sumar con números
+const tx=(t,o,ok)=>(b,d)=>{b.append(E('div','big',t));pick(b,o,ok,d)};
+add('suma20','Resuelve la suma',tx('13 + 5 = ❓',[14,18,15,19],18));
+add('suma20','Resuelve la suma',tx('11 + 4 = ❓',[14,15,16,19],15));
+// 9 Formas
+const SH={t:'🔺',s:'🟩',c:'🔴'};
+const shapes=items=>(b,d)=>{let cur=null,n=0,got=0;const row=E('div','row'),sr=E('div','row');
+items.forEach(([e,k])=>{const it=E('button','it',e);it.setAttribute('aria-label','objeto');it.onclick=()=>{if(it.dataset.done)return;[...row.children].forEach(x=>x.classList.remove('sel'));it.classList.add('sel');cur=it;it._k=k};row.append(it)});
+Object.entries(SH).forEach(([k,e])=>{const s=E('button','b',e);s.onclick=()=>{if(!cur)return;const it=cur;cur=null;it.dataset.done=1;it.classList.remove('sel');it.insertAdjacentHTML('beforeend','<small>'+e+'</small>');n++;if(it._k==k)got++;if(n==items.length)d(got==n)};sr.append(s)});
+b.append(row,E('p','hint','Toca un objeto y después la forma que tiene'),sr)};
+add('forma','Une cada objeto con su forma',shapes([['🍕','t'],['⚽','c'],['🎁','s']]));
+add('forma','Une cada objeto con su forma',shapes([['🧀','t'],['🍪','c'],['📦','s']]));
+// 10 Patrones
+const pat=(s,o,ok)=>(b,d)=>{b.append(E('div','big',s+' ❓'));pick(b,o,ok,d)};
+add('patr','¿Qué fruta viene después?',pat('🍊🍉🍊🍉🍊',['🍊','🍉'],'🍉'));
+add('patr','¿Qué animal viene después?',pat('🐱🐶🐶🐱🐶🐶🐱',['🐱','🐶'],'🐶'));
+
+let i=0,R=[],name='';
+function home(){i=0;R=[];app.innerHTML='<div class="c" style="padding-top:36px"><div style="font-size:5rem">🦖🦁</div><h1 style="color:#fff;font-size:2.4rem">Matesaurio y Coralina</h1><p style="color:#fff;font-size:1.3rem">Ayuda a Matesaurio y a Coralina a resolver 20 retos de números, formas y patrones</p><p><input id="nm" placeholder="¿Cómo te llamas?" aria-label="Nombre" autocomplete="off"></p><p><button class="go" id="st0">¡Empezar!</button></p></div>';$('#st0').onclick=()=>{name=$('#nm').value.trim();show()}}
+function show(){const q=Q[i],ch=i%2?['🦁','Coralina']:['🦖','Matesaurio'];app.innerHTML='<div class="top"><div class="bar"><b style="width:'+i/Q.length*100+'%"></b></div><span>'+(i+1)+'/'+Q.length+'</span></div><div class="pill">'+q.q+'</div><div class="stage" id="sg"></div><div class="foxy"><span>'+ch[0]+'</span><p id="fb">¡Tú puedes!</p></div>';let fin=0;q.fn($('#sg'),ok=>{if(fin)return;fin=1;R.push({cat:q.cat,ok});$('#fb').textContent=ok?'¡Muy bien!':'¡Buen intento!';setTimeout(()=>{i++;i<Q.length?show():end()},1200)})}
+function endOld(){const C={};R.forEach(r=>{C[r.cat]=C[r.cat]||[0,0];C[r.cat][1]++;if(r.ok)C[r.cat][0]++});
+const L=[['g','Lo domina'],['y','Con apoyo'],['r','Empezar por aquí']];
+const lvl=c=>C[c][0]==C[c][1]?0:C[c][0]==0?2:1;
+const rows=Object.keys(CAT).map(c=>{const l=lvl(c);return '<div class="res"><span class="dot '+L[l][0]+'"></span><b>'+CAT[c]+'</b><em>'+C[c][0]+' de '+C[c][1]+' · '+L[l][1]+'</em></div>'}).join('');
+const ord=[2,1].flatMap(l=>Object.keys(CAT).filter(c=>lvl(c)==l));
+const plan=ord.length?'<h2>Por dónde empezar</h2><ol>'+ord.map(c=>'<li>'+CAT[c]+(lvl(c)==2?' (prioridad)':' (reforzar)')+'</li>').join('')+'</ol>':'<h2>¡Nivel 1 superado!</h2><p>Todo en verde: se puede pasar al siguiente nivel.</p>';
+const tot=R.filter(r=>r.ok).length;
+app.innerHTML='<div class="c" style="color:#fff;padding-top:12px"><div style="font-size:3.4rem">🦖🦁⭐</div><h1>¡Misión cumplida'+(name?', '+name:'')+'!</h1><p style="font-size:1.2rem">Aciertos: '+tot+' de '+R.length+'</p></div><div class="stage"><h2>Semáforo del diagnóstico</h2>'+rows+plan+'</div><p class="c noprint"><button class="go" onclick="window.print()">Guardar o imprimir</button> <button class="go" style="background:var(--sky)" onclick="home()">Jugar de nuevo</button></p>'}
+
+const NIV='Nivel 1';
+const COMP=[['Pensamiento numérico',['nums','cont','comp','estr','lin']],['Suma y resta',['suma','rest','suma20']],['Pensamiento espacial y geométrico',['forma']],['Razonamiento lógico',['patr']]];
+const TIP={nums:'Cazar números en casa (puertas, relojes, empaques) y armarlos con tarjetas.',cont:'Contar objetos reales uno a uno señalando cada uno; llegar a 10 y luego a 20.',comp:'Comparar grupos con juguetes (más, menos, igual) y explicar que el tamaño no cambia la cantidad.',estr:'Agrupar objetos de 5 en 5 y de 10 en 10 antes de contar el total.',lin:'Saltar sobre una recta numérica dibujada en el piso y ubicar números cerca de 10, 20 y 50.',suma:'Cuentos de juntar con muñecos y plastilina; luego dibujar y escribir la suma.',rest:'Cuentos de quitar con objetos; tachar dibujos para ver cuántos quedan.',suma20:'Sumar con cuadro de decenas y unidades; empezar por el número mayor y contar hacia adelante.',forma:'Cazar formas en la casa y construirlas con palillos o plastilina.',patr:'Continuar patrones con bloques y fichas (color, forma, tamaño) y crear patrones propios.'};
+
+const LV=[['g','Verde','Lo domina'],['y','Amarillo','Con apoyo'],['r','Rojo','Empezar por aquí']];
+const fecha=()=>new Date().toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});
+const esc=s=>s.replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+function analyze(){const C={};R.forEach(r=>{const c=C[r.cat]=C[r.cat]||{ok:0,n:0,slow:0};c.n++;if(r.ok)c.ok++;if(r.slow)c.slow++});
+const lc=c=>{const x=C[c];return x.ok==x.n?(x.slow?1:0):x.ok==0?2:1};
+const comps=COMP.map(([t,cs])=>{const ok=cs.reduce((a,c)=>a+C[c].ok,0),n=cs.reduce((a,c)=>a+C[c].n,0),lv=ok==n&&cs.every(c=>lc(c)==0)?0:ok/n>=.5?1:2,L=l=>cs.filter(c=>lc(c)==l);return{t,cs,ok,n,lv,strong:L(0),refuerzo:L(1),mejorar:L(2)}});
+return{C,lc,comps,tot:R.filter(r=>r.ok).length}}
+const nm=(a,A)=>a.map(c=>CAT[c]+(A.C[c].ok==A.C[c].n&&A.C[c].slow?' (practicar rapidez)':'')).join(', ');
+const diag=(k,A)=>[k.strong.length&&'Fortalezas: '+nm(k.strong,A)+'.',k.refuerzo.length&&'Por reforzar: '+nm(k.refuerzo,A)+'.',k.mejorar.length&&'Por mejorar primero: '+nm(k.mejorar,A)+'.'].filter(Boolean).join(' ');
+const plan=A=>{const m=[],r=[];A.comps.forEach(k=>{m.push(...k.mejorar);r.push(...k.refuerzo)});return{m,r}};
+function end(){const A=analyze(),C=A.C,P=plan(A);
+const body=A.comps.map(k=>'<div class="cp"><div class="res"><span class="dot '+LV[k.lv][0]+'"></span><b>'+k.t+'</b><em>'+k.ok+' de '+k.n+'<br>'+LV[k.lv][2]+'</em></div><p class="sub">'+diag(k,A)+'</p>'+k.cs.map(c=>'<div class="res sub2"><span class="dot s '+LV[A.lc(c)][0]+'"></span><span style="flex:1">'+CAT[c]+'</span><em>'+C[c].ok+' de '+C[c].n+'</em></div>').join('')+'</div>').join('');
+const li=a=>'<ol>'+a.map(c=>'<li><b>'+CAT[c]+':</b> '+TIP[c]+'</li>').join('')+'</ol>';
+const rec=(P.m.length?'<h3>Mejorar primero</h3>'+li(P.m):'')+(P.r.length?'<h3>Reforzar</h3>'+li(P.r):'')+(P.m.length||P.r.length?'':'<h3>¡Todo en verde!</h3><p>Se puede pasar al siguiente nivel.</p>');
+app.innerHTML='<div class="c hd" style="color:#fff;padding-top:12px;text-shadow:0 1px 3px rgba(0,0,0,.4)"><div style="font-size:3.4rem">🦖🦁⭐</div><h1>¡Misión cumplida'+(name?', '+esc(name):'')+'!</h1><p style="font-size:1.1rem">'+NIV+' · '+fecha()+' · Aciertos: '+A.tot+' de '+R.length+'</p></div><div class="stage"><h2>Diagnóstico por competencias</h2>'+body+'<h2 style="margin-top:22px">Plan de trabajo recomendado</h2>'+rec+'</div><p class="c noprint"><button class="go" id="sv">Guardar y continuar</button></p>';$('#sv').onclick=saveCont}
+function makePdf(A){const D=new jspdf.jsPDF({unit:'mm',format:'a4'}),C=A.C,P=plan(A);let y=20;
+const T=(s,sz,b,x,col)=>{D.setFont('helvetica',b?'bold':'normal');D.setFontSize(sz);D.setTextColor(...(col||[31,58,77]));D.splitTextToSize(s,195-x).forEach(l=>{if(y>282){D.addPage();y=20}D.text(l,x,y);y+=sz*.45+1.3})};
+const dot=(lv,x)=>{D.setFillColor(...[[95,217,184],[255,209,102],[255,107,107]][lv]);D.circle(x,y-1.7,2.2,'F')};
+T('Diagnóstico de matemáticas - '+NIV,18,1,15);y+=2;
+T('Estudiante: '+(name||'Sin nombre'),12,0,15);T('Fecha: '+fecha(),12,0,15);T('Aciertos: '+A.tot+' de '+R.length,12,0,15);y+=4;
+T('Semáforo por competencias',14,1,15);y+=1;
+A.comps.forEach(k=>{dot(k.lv,18);T(k.t+' ('+k.ok+' de '+k.n+') - '+LV[k.lv][2],12,1,24);T(diag(k,A),10,0,24,[70,90,100]);k.cs.forEach(c=>{dot(A.lc(c),30);T(CAT[c]+': '+C[c].ok+' de '+C[c].n,10,0,35)});y+=3});
+y+=2;T('Plan de trabajo recomendado',14,1,15);y+=1;
+const L=(t,a)=>{if(!a.length)return;T(t,12,1,15);a.forEach(c=>T('- '+CAT[c]+': '+TIP[c],10,0,20));y+=2};
+L('Mejorar primero',P.m);L('Reforzar',P.r);if(!P.m.length&&!P.r.length)T('Todo en verde: se puede pasar al siguiente nivel.',11,0,15);
+return D}
+async function saveCont(){const f='Diagnóstico '+NIV+' - '+((name||'Estudiante').replace(/[\\/:*?"<>|]/g,''))+' - '+new Date().toLocaleDateString('sv-SE')+'.pdf';
+try{const dl=window.claude&&await window.claude.use('downloads');if(!dl||!window.jspdf)throw 0;await dl.save({filename:f,data:makePdf(analyze()).output('blob')});home()}catch(e){if(e&&e.code=='declined')return;document.title=f.replace('.pdf','');addEventListener('afterprint',home,{once:true});window.print()}}
+home();
+</script></body></html>

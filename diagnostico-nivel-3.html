@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matesaurio y Coralina · Diagnóstico de mates, nivel 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1f3a4d;--card:#fbfffd;--pink:#ff8fc7;--sun:#ffd166;--mint:#5fd9b8;--sky:#a9e3e8;--red:#ff6b6b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;min-height:100vh;font-family:Fredoka,"Trebuchet MS",sans-serif;color:var(--ink);background:linear-gradient(#7fd6c2,#b9ecd9 50%,#1d6b6b 51%,#0f3d4a) fixed}
+#app{max-width:780px;margin:0 auto;padding:16px}
+.top{display:flex;align-items:center;gap:12px;color:#fff;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.bar{flex:1;height:14px;background:rgba(255,255,255,.4);border-radius:9px;overflow:hidden}
+.bar b{display:block;height:100%;background:var(--sun);border-radius:9px;transition:width .4s}
+.pill{background:var(--card);border-radius:22px;padding:14px 20px;margin:14px 0;font-size:1.3rem;text-align:center;box-shadow:0 6px 18px rgba(15,61,74,.3)}
+.stage{background:var(--card);border-radius:22px;padding:18px;min-height:250px;box-shadow:0 6px 18px rgba(15,61,74,.3)}
+.row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;margin:12px 0}
+.grid{max-width:520px;margin-inline:auto}
+.b,.hbox{font:inherit;color:var(--ink);background:var(--sky);border:0;border-radius:18px;box-shadow:0 4px 0 rgba(31,58,77,.25);cursor:pointer}
+.b{min-width:64px;min-height:64px;font-size:1.8rem;font-weight:600;padding:6px 16px}
+.b:focus-visible,.go:focus-visible,input:focus-visible{outline:4px solid var(--pink);outline-offset:2px}
+.b:disabled{cursor:default}
+.sel{background:var(--sun)!important}.no{background:#ffb3b3!important}
+.big{font-size:2.3rem;text-align:center;margin:14px 0;line-height:1.5;letter-spacing:.05em}
+.cloud{background:#c4e6fb;border-radius:70px;padding:22px 44px;font-size:2.8rem;width:fit-content;margin:18px auto;box-shadow:inset 0 -8px 0 rgba(0,0,0,.08)}
+.flw .b{background:#cfc4fb;border-radius:50%;min-width:74px;min-height:74px}
+.grp{width:7.4em;font-size:1.5rem;line-height:1.2;border:2px dashed var(--ink);border-radius:12px;padding:.4em;text-align:center}
+.mx{display:grid;grid-template-columns:repeat(3,70px);width:fit-content;margin:10px auto;border:3px solid var(--ink)}
+.mx span{height:70px;display:grid;place-items:center;font-size:2.2rem;border:1px solid #9bb}
+.colop{text-align:right;font-size:2.3rem;letter-spacing:.25em;line-height:1.3}
+.colop hr{border:0;border-top:5px solid var(--ink);margin:4px 0}
+.dg{display:flex;gap:6px;justify-content:flex-end}
+.dgi{width:54px;height:64px;font-size:2rem;padding:0;border:3px solid #3ab0e0;border-radius:10px;text-align:center;font-family:inherit}
+.hint{text-align:center;margin:4px 0}
+.foxy{display:flex;align-items:center;gap:10px;margin-top:12px;color:#fff}
+.foxy span{font-size:3.2rem}.foxy p{margin:0;background:var(--card);color:var(--ink);padding:8px 16px;border-radius:18px;font-weight:600}
+.go{font:600 1.5rem Fredoka,sans-serif;color:var(--ink);background:var(--sun);border:0;border-radius:999px;padding:14px 34px;box-shadow:0 5px 0 rgba(31,58,77,.3);cursor:pointer}
+input{font:inherit;font-size:1.4rem;padding:12px 16px;border-radius:14px;border:3px solid var(--ink);text-align:center;width:min(320px,100%)}
+h1,h2,h3{margin:.3em 0}
+.c{text-align:center}
+.res{display:flex;align-items:center;gap:14px;padding:9px 4px;border-bottom:1px solid #d9ece6}
+.dot{width:32px;height:32px;border-radius:50%;flex:none;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18)}
+.res b{flex:1}.res em{font-style:normal;opacity:.75;text-align:right}
+.g{background:var(--mint)}.y{background:var(--sun)}.r{background:var(--red)}
+@media print{body{background:#fff}.noprint{display:none}}
+@media (prefers-reduced-motion:reduce){.bar b{transition:none}}
+.dot.s{width:20px;height:20px}.sub{margin:4px 0 8px 46px;font-size:.98rem}.sub2{padding-left:40px;font-size:.98rem}.cp{margin-top:14px}@media print{.hd{color:#000!important;text-shadow:none!important}}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script></head><body><div id="app"></div>
+<script>
+const $=s=>document.querySelector(s),app=$('#app');
+const E=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.innerHTML=x;return e};
+const rep=(s,n)=>Array(n).fill(s).join('');
+const CAT={nums:'Valor posicional',ord:'Ordenar números',nube:'Sumas y restas (nubes)',col:'Sumas y restas en columna',
+gr:'Multiplicar como grupos',m1:'Tablas fáciles (1, 2, 5, 10)',m2:'Tablas del 3 y del 4',m3:'Tablas del 6 al 9',d1:'Dividir como repartir',d2:'Divisiones básicas',d3:'Multiplicar y dividir van juntas',
+tri:'Contar triángulos',rec:'Contar rectángulos',mat:'Lógica: ¿qué falta?'};
+const SEC=[['Aritmética base',['nums','ord','nube','col']],['Multiplicación y división (el foco)',['gr','m1','m2','m3','d1','d2','d3']],['Geometría y lógica',['tri','rec','mat']]];
+const FAST=['m1','m2','m3','d2','d3'];
+const Q=[],add=(cat,q,fn)=>Q.push({cat,q,fn});
+const pick=(b,list,ok,d,cls)=>{const w=E('div','row '+(cls||''));list.forEach(v=>{const x=E('button','b',v);x.onclick=()=>{w.querySelectorAll('button').forEach(y=>y.disabled=true);x.classList.add('sel');d(v==ok)};w.append(x)});b.append(w)};
+const tx=(t,o,ok,cls)=>(b,d)=>{b.append(E('div','big',t));pick(b,o,ok,d,cls)};
+const N=(a,z)=>{const r=[];for(let k=a;k<=z;k++)r.push(k);return r};
+// Aritmética base
+add('nums','¿Qué número es igual a 7 decenas y 7 unidades?',tx('',[79,77,17,70],77,'grid'));
+add('nums','¿Qué número es igual a 2 decenas y 14 unidades?',tx('',[16,24,34,44],34,'grid'));
+const ord=a=>(b,d)=>{const s=[...a].sort((x,y)=>x-y);let k=0,err=0;const w=E('div','row');a.forEach(v=>{const x=E('button','b',v);x.onclick=()=>{if(x.disabled)return;if(v==s[k]){x.disabled=true;x.classList.add('sel');if(++k==s.length)d(!err)}else{err=1;x.classList.add('no');setTimeout(()=>x.classList.remove('no'),400)}};w.append(x)});b.append(w,E('p','hint','Toca los números de menor a mayor'))};
+add('ord','Ponlos en orden, del más pequeño al más grande',ord([21,48,33,15,30,52]));
+add('ord','Ponlos en orden, del más pequeño al más grande',ord([120,305,98,215,87,250]));
+const nube=(t,o,ok)=>(b,d)=>{b.append(E('div','cloud',t));pick(b,o,ok,d,'flw')};
+add('nube','Ayuda al explorador a llegar al cofre',nube('17 + 3 =',[15,20,16,7,21],20));
+add('nube','Ayuda al explorador a llegar al cofre',nube('52 − 8 =',[44,42,48,60,34],44));
+const col=ops=>(b,d)=>{const w=E('div','row'),ins=[];ops.forEach(([a,s,c,r])=>{const p=E('div','colop','<div>'+a+'</div><div>'+s+' '+c+'</div><hr>'),bx=E('div','dg');for(let k=0;k<3;k++){const i=E('input','dgi');i.maxLength=1;i.inputMode='numeric';i.setAttribute('aria-label','cifra');i.oninput=()=>{i.value=i.value.replace(/\D/g,'');if(i.value&&bx.children[k+1])bx.children[k+1].focus()};bx.append(i)}p.append(bx);w.append(p);ins.push([bx,r])});const v=E('button','go','Verificar');v.onclick=()=>{v.disabled=true;d(ins.every(([bx,r])=>[...bx.children].map(i=>i.value).join('')==r))};const p=E('p','c');p.append(v);b.append(w,p)};
+add('col','Calcula',col([[362,'+',425,'787'],[444,'+',277,'721']]));
+add('col','Calcula',col([[789,'−',327,'462'],[604,'−',216,'388']]));
+// Multiplicación y división
+const grupos=(n,m,e,ans,o)=>(b,d)=>{const w=E('div','row');for(let k=0;k<n;k++)w.append(E('div','grp',rep(e,m)));b.append(w);pick(b,o,ans,d)};
+add('gr','¿Cuántas manzanas hay en total?',grupos(3,4,'🍎',12,[7,12,14,34]));
+add('gr','¿Cuántas estrellas hay en total?',grupos(4,5,'⭐',20,[9,20,25,45]));
+add('m1','Elige la respuesta correcta',tx('3 × 1 =',[3,16,37,54],3));
+add('m1','Elige la respuesta correcta',tx('10 × 7 =',[17,70,77,107],70));
+add('m2','Elige la respuesta correcta',tx('3 × 6 =',[9,12,18,24],18));
+add('m2','Elige la respuesta correcta',tx('4 × 7 =',[11,24,28,32],28));
+add('m3','Elige la respuesta correcta',tx('7 × 6 =',[36,42,48,13],42));
+add('m3','Elige la respuesta correcta',tx('8 × 9 =',[63,72,81,89],72));
+add('d1','Reparte en partes iguales: ¿cuántas recibe cada amigo?',(b,d)=>{b.append(E('div','big',rep('🍪',12)+'<br>entre 3 amigos'));pick(b,[3,4,5,9],4,d)});
+add('d1','Reparte en partes iguales: ¿cuántas recibe cada amigo?',(b,d)=>{b.append(E('div','big',rep('⭐',15)+'<br>entre 5 amigos'));pick(b,[3,5,10,20],3,d)});
+add('d2','Elige la respuesta correcta',tx('25 ÷ 5 =',[5,6,9,7],5));
+add('d2','Elige la respuesta correcta',tx('24 ÷ 6 =',[3,4,5,18],4));
+add('d3','Piensa en la familia de operaciones',tx('Si 6 × 4 = 24<br>entonces 24 ÷ 4 =',[4,6,20,28],6));
+add('d3','Piensa en la familia de operaciones',tx('Si 8 × 3 = 24<br>entonces 24 ÷ 8 =',[3,8,16,32],3));
+// Geometría y lógica
+const tri=n=>{let s='<svg viewBox="0 0 200 160" width="250" role="img" aria-label="triángulo"><polygon points="100,10 10,150 190,150" fill="none" stroke="#1f3a4d" stroke-width="4"/>';for(let k=1;k<=n;k++)s+='<line x1="100" y1="10" x2="'+(10+180*k/(n+1))+'" y2="150" stroke="#1f3a4d" stroke-width="4"/>';return s+'</svg>'};
+const grid=(r,c)=>{let s='<svg viewBox="0 0 220 140" width="270" role="img" aria-label="rectángulo"><rect x="10" y="10" width="200" height="120" fill="none" stroke="#2b8ae0" stroke-width="4"/>';for(let k=1;k<c;k++)s+='<line x1="'+(10+200*k/c)+'" y1="10" x2="'+(10+200*k/c)+'" y2="130" stroke="#2b8ae0" stroke-width="4"/>';for(let k=1;k<r;k++)s+='<line x1="10" y1="'+(10+120*k/r)+'" x2="210" y2="'+(10+120*k/r)+'" stroke="#2b8ae0" stroke-width="4"/>';return s+'</svg>'};
+add('tri','¿Cuántos triángulos hay?',(b,d)=>{b.append(E('div','c',tri(1)));pick(b,N(2,7),3,d)});
+add('tri','¿Cuántos triángulos hay?',(b,d)=>{b.append(E('div','c',tri(2)));pick(b,N(2,7),6,d)});
+add('rec','¿Cuántos rectángulos hay?',(b,d)=>{b.append(E('div','c',grid(1,3)));pick(b,N(4,9),6,d)});
+add('rec','¿Cuántos rectángulos hay?',(b,d)=>{b.append(E('div','c',grid(2,2)));pick(b,N(4,9),9,d)});
+const mat=(g,o,ok)=>(b,d)=>{b.append(E('div','mx',g.map(x=>'<span>'+x+'</span>').join('')));pick(b,o,ok,d)};
+add('mat','¿Qué elemento debe estar en el espacio vacío?',mat(['🏆','⭐','💎','⭐','💎','🏆','❓','🏆','⭐'],['💎','🏆','⭐'],'💎'));
+add('mat','¿Qué elemento debe estar en el espacio vacío?',mat(['🍎','🍌','🍇','🍇','🍎','🍌','🍌','❓','🍎'],['🍎','🍌','🍇'],'🍇'));
+
+let i=0,R=[],name='',t0=0;
+function home(){i=0;R=[];app.innerHTML='<div class="c" style="padding-top:36px"><div style="font-size:5rem">🦖🦁</div><h1 style="color:#fff;font-size:2.4rem">Matesaurio y Coralina</h1><p style="color:#fff;font-size:1.3rem;text-shadow:0 1px 3px rgba(0,0,0,.4)">Nivel 3: ayuda a los exploradores a encontrar el cofre resolviendo '+Q.length+' retos</p><p><input id="nm" placeholder="¿Cómo te llamas?" aria-label="Nombre" autocomplete="off"></p><p><button class="go" id="st0">¡Empezar!</button></p></div>';$('#st0').onclick=()=>{name=$('#nm').value.trim();show()}}
+function show(){const q=Q[i],ch=i%2?['🦁','Coralina']:['🦖','Matesaurio'];app.innerHTML='<div class="top"><div class="bar"><b style="width:'+i/Q.length*100+'%"></b></div><span>'+(i+1)+'/'+Q.length+'</span></div><div class="pill">'+q.q+'</div><div class="stage" id="sg"></div><div class="foxy"><span>'+ch[0]+'</span><p id="fb">¡Tú puedes!</p></div>';let fin=0;t0=Date.now();q.fn($('#sg'),ok=>{if(fin)return;fin=1;R.push({cat:q.cat,ok,slow:ok&&FAST.includes(q.cat)&&Date.now()-t0>12000});$('#fb').textContent=ok?'¡Muy bien!':'¡Buen intento!';setTimeout(()=>{i++;i<Q.length?show():end()},q.cat=='col'?1600:1200)})}
+function endOld(){const C={};R.forEach(r=>{const c=C[r.cat]=C[r.cat]||{ok:0,n:0,slow:0};c.n++;if(r.ok)c.ok++;if(r.slow)c.slow++});
+const L=[['g','Lo domina'],['y','Con apoyo'],['r','Empezar por aquí']];
+const lvl=c=>{const x=C[c];return x.ok==x.n?(x.slow?1:0):x.ok==0?2:1};
+const note=c=>{const x=C[c];return x.ok==x.n&&x.slow?'Lo sabe, pero lento':L[lvl(c)][1]};
+const rows=SEC.map(([t,cs])=>'<h3>'+t+'</h3>'+cs.map(c=>'<div class="res"><span class="dot '+L[lvl(c)][0]+'"></span><b>'+CAT[c]+'</b><em>'+C[c].ok+' de '+C[c].n+'<br>'+note(c)+'</em></div>').join('')).join('');
+const all=SEC.flatMap(s=>s[1]),md=SEC[1][1];
+const ord=[2,1].flatMap(l=>all.filter(c=>lvl(c)==l));
+const green=md.filter(c=>lvl(c)==0).length;
+const plan=(ord.length?'<h2>Por dónde empezar</h2><ol>'+ord.map(c=>'<li>'+CAT[c]+(lvl(c)==2?' (prioridad)':C[c].ok==C[c].n?' (practicar rapidez)':' (reforzar)')+'</li>').join('')+'</ol>':'<h2>¡Nivel 3 superado!</h2><p>Todo en verde.</p>')+'<p><b>Foco en multiplicar y dividir:</b> '+green+' de '+md.length+' temas en verde.</p>';
+const tot=R.filter(r=>r.ok).length;
+app.innerHTML='<div class="c" style="color:#fff;padding-top:12px;text-shadow:0 1px 3px rgba(0,0,0,.4)"><div style="font-size:3.4rem">🦖🦁⭐</div><h1>¡Misión cumplida'+(name?', '+name:'')+'!</h1><p style="font-size:1.2rem">Aciertos: '+tot+' de '+R.length+'</p></div><div class="stage"><h2>Semáforo del diagnóstico</h2>'+rows+plan+'</div><p class="c noprint"><button class="go" onclick="window.print()">Guardar o imprimir</button> <button class="go" style="background:var(--sky)" onclick="home()">Jugar de nuevo</button></p>'}
+
+const NIV='Nivel 3';
+const COMP=[['Sistema de numeración',['nums','ord']],['Suma y resta',['nube','col']],['Multiplicación',['gr','m1','m2','m3']],['División',['d1','d2','d3']],['Pensamiento espacial y geométrico',['tri','rec']],['Razonamiento lógico',['mat']]];
+const TIP={nums:'Representar números con bloques base 10 (decenas y unidades sueltas) y descomponerlos.',ord:'Ordenar tarjetas de números en una recta numérica y compararlos con mayor que y menor que.',nube:'Cálculo mental: complementos del 10 y del 20 y saltos en la recta numérica.',col:'Sumas y restas en columna con bloques base 10; revisar cuándo se lleva y cuándo se presta.',gr:'Armar grupos iguales y arreglos de filas y columnas; escribir la suma repetida y la multiplicación.',m1:'Tablas del 1, 2, 5 y 10 con saltos en la recta y patrones del tablero de 100.',m2:'Tablas del 3 y del 4 con arreglos, dobles y juegos de memoria; 5 minutos diarios.',m3:'Tablas del 6 al 9 con trucos (6×7 desde 5×7, la tabla del 9 con los dedos) y juegos de tarjetas.',d1:'Repartir objetos reales en partes iguales y registrar cuántos tocan a cada uno.',d2:'Ver la división como la multiplicación al revés; practicar con las tablas ya aprendidas.',d3:'Familias de operaciones: escribir las 4 frases que salen de tres números (6, 4 y 24).',tri:'Contar figuras de a una, por tamaños, marcándolas con colores para no repetir.',rec:'Contar los rectángulos pequeños y luego los formados por dos o más; dibujar cuadrículas.',mat:'Resolver sudokus pequeños (3×3 y 4×4) y matrices de figuras.'};
+
+const LV=[['g','Verde','Lo domina'],['y','Amarillo','Con apoyo'],['r','Rojo','Empezar por aquí']];
+const fecha=()=>new Date().toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});
+const esc=s=>s.replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+function analyze(){const C={};R.forEach(r=>{const c=C[r.cat]=C[r.cat]||{ok:0,n:0,slow:0};c.n++;if(r.ok)c.ok++;if(r.slow)c.slow++});
+const lc=c=>{const x=C[c];return x.ok==x.n?(x.slow?1:0):x.ok==0?2:1};
+const comps=COMP.map(([t,cs])=>{const ok=cs.reduce((a,c)=>a+C[c].ok,0),n=cs.reduce((a,c)=>a+C[c].n,0),lv=ok==n&&cs.every(c=>lc(c)==0)?0:ok/n>=.5?1:2,L=l=>cs.filter(c=>lc(c)==l);return{t,cs,ok,n,lv,strong:L(0),refuerzo:L(1),mejorar:L(2)}});
+return{C,lc,comps,tot:R.filter(r=>r.ok).length}}
+const nm=(a,A)=>a.map(c=>CAT[c]+(A.C[c].ok==A.C[c].n&&A.C[c].slow?' (practicar rapidez)':'')).join(', ');
+const diag=(k,A)=>[k.strong.length&&'Fortalezas: '+nm(k.strong,A)+'.',k.refuerzo.length&&'Por reforzar: '+nm(k.refuerzo,A)+'.',k.mejorar.length&&'Por mejorar primero: '+nm(k.mejorar,A)+'.'].filter(Boolean).join(' ');
+const plan=A=>{const m=[],r=[];A.comps.forEach(k=>{m.push(...k.mejorar);r.push(...k.refuerzo)});return{m,r}};
+function end(){const A=analyze(),C=A.C,P=plan(A);
+const body=A.comps.map(k=>'<div class="cp"><div class="res"><span class="dot '+LV[k.lv][0]+'"></span><b>'+k.t+'</b><em>'+k.ok+' de '+k.n+'<br>'+LV[k.lv][2]+'</em></div><p class="sub">'+diag(k,A)+'</p>'+k.cs.map(c=>'<div class="res sub2"><span class="dot s '+LV[A.lc(c)][0]+'"></span><span style="flex:1">'+CAT[c]+'</span><em>'+C[c].ok+' de '+C[c].n+'</em></div>').join('')+'</div>').join('');
+const li=a=>'<ol>'+a.map(c=>'<li><b>'+CAT[c]+':</b> '+TIP[c]+'</li>').join('')+'</ol>';
+const rec=(P.m.length?'<h3>Mejorar primero</h3>'+li(P.m):'')+(P.r.length?'<h3>Reforzar</h3>'+li(P.r):'')+(P.m.length||P.r.length?'':'<h3>¡Todo en verde!</h3><p>Se puede pasar al siguiente nivel.</p>');
+app.innerHTML='<div class="c hd" style="color:#fff;padding-top:12px;text-shadow:0 1px 3px rgba(0,0,0,.4)"><div style="font-size:3.4rem">🦖🦁⭐</div><h1>¡Misión cumplida'+(name?', '+esc(name):'')+'!</h1><p style="font-size:1.1rem">'+NIV+' · '+fecha()+' · Aciertos: '+A.tot+' de '+R.length+'</p></div><div class="stage"><h2>Diagnóstico por competencias</h2>'+body+'<h2 style="margin-top:22px">Plan de trabajo recomendado</h2>'+rec+'</div><p class="c noprint"><button class="go" id="sv">Guardar y continuar</button></p>';$('#sv').onclick=saveCont}
+function makePdf(A){const D=new jspdf.jsPDF({unit:'mm',format:'a4'}),C=A.C,P=plan(A);let y=20;
+const T=(s,sz,b,x,col)=>{D.setFont('helvetica',b?'bold':'normal');D.setFontSize(sz);D.setTextColor(...(col||[31,58,77]));D.splitTextToSize(s,195-x).forEach(l=>{if(y>282){D.addPage();y=20}D.text(l,x,y);y+=sz*.45+1.3})};
+const dot=(lv,x)=>{D.setFillColor(...[[95,217,184],[255,209,102],[255,107,107]][lv]);D.circle(x,y-1.7,2.2,'F')};
+T('Diagnóstico de matemáticas - '+NIV,18,1,15);y+=2;
+T('Estudiante: '+(name||'Sin nombre'),12,0,15);T('Fecha: '+fecha(),12,0,15);T('Aciertos: '+A.tot+' de '+R.length,12,0,15);y+=4;
+T('Semáforo por competencias',14,1,15);y+=1;
+A.comps.forEach(k=>{dot(k.lv,18);T(k.t+' ('+k.ok+' de '+k.n+') - '+LV[k.lv][2],12,1,24);T(diag(k,A),10,0,24,[70,90,100]);k.cs.forEach(c=>{dot(A.lc(c),30);T(CAT[c]+': '+C[c].ok+' de '+C[c].n,10,0,35)});y+=3});
+y+=2;T('Plan de trabajo recomendado',14,1,15);y+=1;
+const L=(t,a)=>{if(!a.length)return;T(t,12,1,15);a.forEach(c=>T('- '+CAT[c]+': '+TIP[c],10,0,20));y+=2};
+L('Mejorar primero',P.m);L('Reforzar',P.r);if(!P.m.length&&!P.r.length)T('Todo en verde: se puede pasar al siguiente nivel.',11,0,15);
+return D}
+async function saveCont(){const f='Diagnóstico '+NIV+' - '+((name||'Estudiante').replace(/[\\/:*?"<>|]/g,''))+' - '+new Date().toLocaleDateString('sv-SE')+'.pdf';
+try{const dl=window.claude&&await window.claude.use('downloads');if(!dl||!window.jspdf)throw 0;await dl.save({filename:f,data:makePdf(analyze()).output('blob')});home()}catch(e){if(e&&e.code=='declined')return;document.title=f.replace('.pdf','');addEventListener('afterprint',home,{once:true});window.print()}}
+home();
+</script></body></html>
